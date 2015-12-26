@@ -84,7 +84,7 @@
                     <navigationItem key="navigationItem" id="xhK-0p-P7P">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="rOh-1I-qqb">
                             <connections>
-                                <segue destination="Ulb-dP-aGm" kind="modal" id="sgX-Ux-TmX"/>
+                                <segue destination="Ulb-dP-aGm" kind="modal" modalTransitionStyle="crossDissolve" id="sgX-Ux-TmX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -112,13 +112,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Settings Text" textAlignment="natural" id="rSy-0l-8Gg">
-                                <rect key="frame" x="40" y="27" width="240" height="128"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ojW-hL-LS9">
+                                <rect key="frame" x="20" y="473" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="onSave:" destination="Ulb-dP-aGm" eventType="touchUpInside" id="Ky2-Qa-djz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
