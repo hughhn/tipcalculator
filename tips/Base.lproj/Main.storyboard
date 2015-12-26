@@ -82,7 +82,11 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="xhK-0p-P7P">
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="rOh-1I-qqb"/>
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="rOh-1I-qqb">
+                            <connections>
+                                <segue destination="Ulb-dP-aGm" kind="modal" id="sgX-Ux-TmX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="billField" destination="9PX-QM-rfp" id="2ez-ks-PR2"/>
@@ -100,13 +104,22 @@
             </objects>
             <point key="canvasLocation" x="646" y="270"/>
         </scene>
-        <!--View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="61K-zB-fSl">
             <objects>
-                <viewController id="Ulb-dP-aGm" sceneMemberID="viewController">
+                <viewController id="Ulb-dP-aGm" customClass="SettingsViewController" customModule="tips" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yG7-Cp-z0M">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Settings Text" textAlignment="natural" id="rSy-0l-8Gg">
+                                <rect key="frame" x="40" y="27" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
