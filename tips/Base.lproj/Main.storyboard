@@ -57,9 +57,9 @@
                                 <rect key="frame" x="20" y="329" width="274" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
+                                    <segment title="15%"/>
                                     <segment title="18%"/>
                                     <segment title="20%"/>
-                                    <segment title="25%"/>
                                 </segments>
                                 <connections>
                                     <action selector="onEditingChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="EUP-cp-7aw"/>
@@ -120,9 +120,31 @@
                                     <action selector="onSave:" destination="Ulb-dP-aGm" eventType="touchUpInside" id="Ky2-Qa-djz"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip Default" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GzE-Mx-wb6">
+                                <rect key="frame" x="20" y="20" width="84" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="Ys7-Rh-SAg">
+                                <rect key="frame" x="20" y="62" width="274" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="15%"/>
+                                    <segment title="18%"/>
+                                    <segment title="20%"/>
+                                </segments>
+                                <connections>
+                                    <action selector="onDefaultTipChange:" destination="Ulb-dP-aGm" eventType="valueChanged" id="LiT-mw-f7g"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="tipControl" destination="Ys7-Rh-SAg" id="DvG-EH-06N"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6jg-Sk-UV3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
