@@ -15,9 +15,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     
-    let defaultTipKey = "defaultTip"
-    let tipPercentages = [0.15, 0.18, 0.2]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -28,7 +25,7 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         let defaults = NSUserDefaults.standardUserDefaults()
-        let defaultTipIndex = defaults.integerForKey(defaultTipKey)
+        let defaultTipIndex = defaults.integerForKey(AppKeys.tipKey)
         tipControl.selectedSegmentIndex = defaultTipIndex
         onEditingChanged(nil)
     }
@@ -39,7 +36,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onEditingChanged(sender: AnyObject?) {
-        let tipPercentage = tipPercentages[tipControl.selectedSegmentIndex]
+        let tipPercentage = AppDefaults.tipPercentages[tipControl.selectedSegmentIndex]
         let billAmount = NSString(string: billField.text!).doubleValue
         let tip = billAmount * tipPercentage
         let total = billAmount + tip
