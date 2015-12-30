@@ -36,8 +36,8 @@ class ViewController: UIViewController {
     }
     
     func setupBillAmount() {
-        tipLabel.text = "$0.00"
-        totalLabel.text = "$0.00"
+        tipLabel.text = formatter.stringFromNumber(0.0)
+        totalLabel.text = formatter.stringFromNumber(0.0)
         
         let defaults = NSUserDefaults.standardUserDefaults()
         let lastTipDate = defaults.objectForKey(AppKeys.lastTipDateKey)
