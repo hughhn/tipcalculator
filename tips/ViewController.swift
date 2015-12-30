@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     
     var formatter = NSNumberFormatter()
+    var timer: NSTimer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,8 +89,40 @@ class ViewController: UIViewController {
                 
         tipLabel.text = formatter.stringFromNumber(tip)
         totalLabel.text = formatter.stringFromNumber(total)
+        
+        animateTotal()
     }
-
+    
+    func animateTotal() {
+        if (billField.text?.isEmpty == false) {
+            if (timer != nil) {
+                timer.invalidate()
+                timer = nil
+            }
+            
+            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("timedAnimation"), userInfo: nil, repeats: false)
+        } else {
+            if (timer != nil) {
+                timer.invalidate()
+                timer = nil
+            }
+        }
+    }
+    
+    func timedAnimation() {
+        let shakeAnim = CABasicAnimation(keyPath: "position")
+        shakeAnim.duration = 0.07
+        shakeAnim.repeatCount = 4
+        shakeAnim.autoreverses = true
+        shakeAnim.fromValue = NSValue(CGPoint: CGPointMake(totalLabel.center.x - 10, totalLabel.center.y))
+        shakeAnim.toValue = NSValue(CGPoint: CGPointMake(totalLabel.center.x + 10, totalLabel.center.y))
+        totalLabel.layer.addAnimation(shakeAnim, forKey: "position")
+        
+        UIView.transitionWithView(totalLabel, duration: 1, options: .TransitionCrossDissolve, animations: { self.totalLabel.textColor = UIColor.redColor() }, completion: { finished in
+            // completion
+            self.totalLabel.textColor = UIColor.blackColor()
+        })
+    }
     
     @IBAction func onTap(sender: AnyObject) {
         view.endEditing(true)
