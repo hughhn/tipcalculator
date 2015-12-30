@@ -8,11 +8,19 @@
 
 import Foundation
 
-struct AppKeys {
-    static let tipKey = "tipKey"
-    static let lastTipDateKey = "lastTipDateKey"
+struct AppConfig {
+    static let tipPercentages = [0.15, 0.18, 0.2]
+    static let maxCacheTime = 600
 }
 
-struct AppDefaults {
-    static let tipPercentages = [0.15, 0.18, 0.2]
+struct AppEvents {
+    static let appEnterBackgroundEvent = "appEnterBackgroundEvent"
 }
+
+struct AppKeys {
+    static let tipIndexKey = "tipIndexKey"
+    static let lastTipDateKey = "lastTipDateKey"
+    static let lastBillAmountKey = "lastBillAmountKey"
+}
+
+

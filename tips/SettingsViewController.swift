@@ -17,7 +17,7 @@ class SettingsViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         let defaults = NSUserDefaults.standardUserDefaults()
-        let defaultTipIndex = defaults.integerForKey(AppKeys.tipKey)
+        let defaultTipIndex = defaults.integerForKey(AppKeys.tipIndexKey)
         tipControl.selectedSegmentIndex = defaultTipIndex
     }
 
@@ -43,7 +43,7 @@ class SettingsViewController: UIViewController {
     @IBAction func onDefaultTipChange(sender: AnyObject) {
         let tipPercentage = tipControl.selectedSegmentIndex
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setInteger(tipPercentage, forKey: AppKeys.tipKey)
+        defaults.setInteger(tipPercentage, forKey: AppKeys.tipIndexKey)
         defaults.synchronize()
     }
 }
