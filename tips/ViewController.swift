@@ -61,6 +61,8 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        billField.becomeFirstResponder()
+        
         // refresh to the correct percentage tab
         let defaults = NSUserDefaults.standardUserDefaults()
         let defaultTipIndex = defaults.integerForKey(AppKeys.tipIndexKey)
