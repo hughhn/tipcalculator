@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         if (lastTipDate != nil && lastBillAmount != nil) {
             let elapsedTime = Int(NSDate().timeIntervalSinceDate(lastTipDate as! NSDate))
             if (elapsedTime < AppConfig.maxCacheTime) {
-                billField.text = lastBillAmount as! String
+                billField.text = lastBillAmount as? String
                 onEditingChanged(nil)
             }
         }
