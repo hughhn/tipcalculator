@@ -33,6 +33,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         self.numberPicker.dataSource = self;
         self.numberPicker.delegate = self;
+        currencyLabel.hidden = true
         
         formatter.numberStyle = .CurrencyStyle
         formatter.locale = NSLocale.currentLocale()
@@ -64,6 +65,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         // try to restore the last bill amount if its < 10 mins ago
         if lastTipDate != nil && lastBillAmount != nil {
+            showDetails = true
             let elapsedTime = Int(NSDate().timeIntervalSinceDate(lastTipDate as! NSDate))
             if (elapsedTime < AppConfig.maxCacheTime) {
                 billField.text = lastBillAmount as? String
@@ -125,7 +127,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             }, completion: { finished in
                 self.showDetails = false
             })
-            
         } else if !showDetails {
             self.currencyLabel.hidden = true
             UIView.animateWithDuration(0.4, animations: {
