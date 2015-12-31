@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var currencyLabel: UILabel!
     
     var formatter = NSNumberFormatter()
     var timer: NSTimer!
@@ -26,6 +27,7 @@ class ViewController: UIViewController {
         
         formatter.numberStyle = .CurrencyStyle
         formatter.locale = NSLocale.currentLocale()
+        currencyLabel.text = formatter.currencySymbol
         
         NSNotificationCenter
             .defaultCenter()
@@ -35,10 +37,10 @@ class ViewController: UIViewController {
                 name: AppEvents.appEnterBackgroundEvent,
                 object: nil)
         
-        setupBillAmount()
+        initBillAmount()
     }
     
-    func setupBillAmount() {
+    func initBillAmount() {
         tipLabel.text = formatter.stringFromNumber(0.0)
         totalLabel.text = formatter.stringFromNumber(0.0)
         
@@ -99,15 +101,26 @@ class ViewController: UIViewController {
     
     func updateViews() {
         if billField.text!.isEmpty {
-            showDetails = false
-            tipControl.hidden = true
-            containerView.hidden = true
-            billField.frame = CGRectOffset( billField.frame, 0, 100 );
+            self.tipControl.hidden = true
+            self.containerView.hidden = true
+            self.currencyLabel.hidden = false
+            UIView.animateWithDuration(0.4, animations: {
+                self.currencyLabel.frame = CGRectOffset(self.currencyLabel.frame, 0, 100)
+                self.billField.frame = CGRectOffset(self.billField.frame, 0, 100)
+            }, completion: { finished in
+                self.showDetails = false
+            })
+            
         } else if !showDetails {
-            showDetails = true
-            tipControl.hidden = false
-            containerView.hidden = false
-            billField.frame = CGRectOffset( billField.frame, 0, -100 );
+            self.currencyLabel.hidden = true
+            UIView.animateWithDuration(0.4, animations: {
+                self.currencyLabel.frame = CGRectOffset(self.currencyLabel.frame, 0, -100)
+                self.billField.frame = CGRectOffset(self.billField.frame, 0, -100)
+            }, completion: { finished in
+                self.showDetails = true
+                self.tipControl.hidden = false
+                self.containerView.hidden = false
+            })
         }
     }
     
@@ -118,7 +131,7 @@ class ViewController: UIViewController {
                 timer = nil
             }
             
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("timedAnimation"), userInfo: nil, repeats: false)
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.7, target: self, selector: Selector("timedAnimation"), userInfo: nil, repeats: false)
         } else {
             if (timer != nil) {
                 timer.invalidate()

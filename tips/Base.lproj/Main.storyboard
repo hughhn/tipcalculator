@@ -13,15 +13,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="50" id="9PX-QM-rfp">
-                                <rect key="frame" x="26" y="101" width="274" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                <connections>
-                                    <action selector="onEditingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="xi8-n0-ktZ"/>
-                                </connections>
-                            </textField>
                             <view contentMode="scaleToFill" id="nWw-hX-rfo">
                                 <rect key="frame" x="0.0" y="231" width="320" height="337"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -41,7 +32,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.13621794871794868" green="0.13621794871794868" blue="0.13621794871794868" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="j5R-P8-xg9">
                                 <rect key="frame" x="26" y="180" width="274" height="29"/>
@@ -55,6 +46,22 @@
                                     <action selector="onEditingChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="EUP-cp-7aw"/>
                                 </connections>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="owh-k6-EaU">
+                                <rect key="frame" x="258" y="101" width="42" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <color key="textColor" red="0.76968060756509227" green="0.73215989106451373" blue="0.77840723167539272" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="50" id="9PX-QM-rfp">
+                                <rect key="frame" x="26" y="101" width="274" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <connections>
+                                    <action selector="onEditingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="xi8-n0-ktZ"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -72,6 +79,7 @@
                     <connections>
                         <outlet property="billField" destination="9PX-QM-rfp" id="2ez-ks-PR2"/>
                         <outlet property="containerView" destination="nWw-hX-rfo" id="O3m-M6-3Xj"/>
+                        <outlet property="currencyLabel" destination="owh-k6-EaU" id="Bcd-tC-qd0"/>
                         <outlet property="tipControl" destination="j5R-P8-xg9" id="Pwe-wh-8Qw"/>
                         <outlet property="tipLabel" destination="Dd1-gY-DjH" id="kq8-Jp-mGZ"/>
                         <outlet property="totalLabel" destination="ne6-fi-RIk" id="SLe-s3-bKA"/>
