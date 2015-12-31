@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
     @IBOutlet weak var tipControl: UISegmentedControl!
     @IBOutlet weak var billField: UITextField!
@@ -17,6 +17,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var currencyLabel: UILabel!
     @IBOutlet weak var splitButton: UIButton!
+    @IBOutlet weak var numberPicker: UIPickerView!
+    @IBOutlet weak var splitTotalLabel: UILabel!
+    
+    var total = 0.0
+    var splitBase = 2
     
     var formatter = NSNumberFormatter()
     var timer: NSTimer!
@@ -26,6 +31,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        self.numberPicker.dataSource = self;
+        self.numberPicker.delegate = self;
+        
         formatter.numberStyle = .CurrencyStyle
         formatter.locale = NSLocale.currentLocale()
         currencyLabel.text = formatter.currencySymbol
@@ -33,6 +41,7 @@ class ViewController: UIViewController {
         splitButton.layer.cornerRadius = 4;
         splitButton.layer.borderWidth = 1;
         splitButton.layer.borderColor = UIColor.whiteColor().CGColor
+        splitTotalLabel.textColor = UIColor.greenColor()
         
         NSNotificationCenter
             .defaultCenter()
@@ -96,10 +105,11 @@ class ViewController: UIViewController {
         let tipPercentage = AppConfig.tipPercentages[tipControl.selectedSegmentIndex]
         let billAmount = NSString(string: billField.text!).doubleValue
         let tip = billAmount * tipPercentage
-        let total = billAmount + tip
+        total = billAmount + tip
                 
         tipLabel.text = formatter.stringFromNumber(tip)
         totalLabel.text = formatter.stringFromNumber(total)
+        calculateSplitTotal()
         
         animateTotal()
     }
@@ -168,5 +178,44 @@ class ViewController: UIViewController {
         view.endEditing(true)
     }
     
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 100;
+    }
+    
+    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+        let pickerLabel = UILabel()
+        let myTitle = NSAttributedString(string: String(row + 2), attributes: [NSFontAttributeName:UIFont(name: "Helvetica Neue", size: 26.0)!,NSForegroundColorAttributeName:UIColor.blackColor()])
+        pickerLabel.attributedText = myTitle
+        pickerLabel.textAlignment = .Center
+        pickerLabel.textColor = UIColor.whiteColor()
+        return pickerLabel
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        splitBase = row + 2
+        calculateSplitTotal()
+    }
+    
+    func calculateSplitTotal() {
+        let oldTotal = splitTotalLabel.text
+        var newTotal: String!
+        if (splitBase == 0) {
+            newTotal = formatter.stringFromNumber(0.0)
+        } else {
+            let splitTotal = total / Double(splitBase)
+            newTotal = formatter.stringFromNumber(splitTotal)
+        }
+        UIView.animateWithDuration(0.4, animations: {
+            self.splitTotalLabel.text = oldTotal
+            self.splitTotalLabel.alpha = 0.0
+            }, completion: { finished in
+                self.splitTotalLabel.alpha = 1.0
+                self.splitTotalLabel.text = newTotal
+        })
+    }
 }
 

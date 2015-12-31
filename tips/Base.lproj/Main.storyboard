@@ -42,6 +42,17 @@
                                             <action selector="onSplitClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="V7w-5A-YsR"/>
                                         </connections>
                                     </button>
+                                    <pickerView contentMode="scaleToFill" id="wep-kn-jHd">
+                                        <rect key="frame" x="0.0" y="92" width="160" height="132"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    </pickerView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g4x-3n-gZT">
+                                        <rect key="frame" x="168" y="141" width="129" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" red="0.98339182420000004" green="1" blue="0.98650876259999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.58729698243224571" green="0.76961579150213466" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -91,7 +102,9 @@
                         <outlet property="billField" destination="9PX-QM-rfp" id="2ez-ks-PR2"/>
                         <outlet property="containerView" destination="nWw-hX-rfo" id="O3m-M6-3Xj"/>
                         <outlet property="currencyLabel" destination="owh-k6-EaU" id="Bcd-tC-qd0"/>
+                        <outlet property="numberPicker" destination="wep-kn-jHd" id="L4Y-0o-sCq"/>
                         <outlet property="splitButton" destination="OeF-Tl-nlV" id="jqf-bA-obU"/>
+                        <outlet property="splitTotalLabel" destination="g4x-3n-gZT" id="TRI-Rv-O3j"/>
                         <outlet property="tipControl" destination="j5R-P8-xg9" id="Pwe-wh-8Qw"/>
                         <outlet property="tipLabel" destination="Dd1-gY-DjH" id="kq8-Jp-mGZ"/>
                         <outlet property="totalLabel" destination="ne6-fi-RIk" id="SLe-s3-bKA"/>

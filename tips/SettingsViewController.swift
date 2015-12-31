@@ -19,7 +19,7 @@ class SettingsViewController: UIViewController {
         // Do any additional setup after loading the view.
         saveButton.layer.cornerRadius = 4;
         saveButton.layer.borderWidth = 1;
-        saveButton.layer.borderColor = UIColor.blueColor().CGColor
+        saveButton.layer.borderColor = UIColor(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0).CGColor
         
         let defaults = NSUserDefaults.standardUserDefaults()
         let defaultTipIndex = defaults.integerForKey(AppKeys.tipIndexKey)
