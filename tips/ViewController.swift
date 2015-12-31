@@ -148,7 +148,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 timer = nil
             }
             
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.7, target: self, selector: Selector("timedAnimation"), userInfo: nil, repeats: false)
+            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("timedAnimation"), userInfo: nil, repeats: false)
         } else {
             if (timer != nil) {
                 timer.invalidate()
