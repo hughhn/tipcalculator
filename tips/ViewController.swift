@@ -25,7 +25,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     var formatter = NSNumberFormatter()
     var timer: NSTimer!
-    var showDetails = false
+    var showDetails = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,16 +60,21 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         totalLabel.text = formatter.stringFromNumber(0.0)
         
         let defaults = NSUserDefaults.standardUserDefaults()
+        let lastShowDetails = defaults.objectForKey(AppKeys.showDetailsKey)
+        if (lastShowDetails != nil) {
+            showDetails = lastShowDetails as! Bool
+            print("restore showDetails")
+            print(showDetails)
+        }
+        
         let lastTipDate = defaults.objectForKey(AppKeys.lastTipDateKey)
         let lastBillAmount = defaults.objectForKey(AppKeys.lastBillAmountKey)
         
         // try to restore the last bill amount if its < 10 mins ago
         if lastTipDate != nil && lastBillAmount != nil {
-            showDetails = true
             let elapsedTime = Int(NSDate().timeIntervalSinceDate(lastTipDate as! NSDate))
             if (elapsedTime < AppConfig.maxCacheTime) {
                 billField.text = lastBillAmount as? String
-                onEditingChanged(nil)
             }
         }
         
@@ -83,6 +88,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(NSDate(), forKey: AppKeys.lastTipDateKey)
         defaults.setObject(billField.text, forKey: AppKeys.lastBillAmountKey)
+        defaults.setObject(showDetails, forKey: AppKeys.showDetailsKey)
         defaults.synchronize()
     }
     
@@ -103,12 +109,15 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 
     @IBAction func onEditingChanged(sender: AnyObject?) {
         updateViews()
-        
+        calculateTotal()
+    }
+    
+    func calculateTotal() {
         let tipPercentage = AppConfig.tipPercentages[tipControl.selectedSegmentIndex]
         let billAmount = NSString(string: billField.text!).doubleValue
         let tip = billAmount * tipPercentage
         total = billAmount + tip
-                
+        
         tipLabel.text = formatter.stringFromNumber(tip)
         totalLabel.text = formatter.stringFromNumber(total)
         calculateSplitTotal()
@@ -117,7 +126,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     func updateViews() {
-        if billField.text!.isEmpty {
+        if showDetails && billField.text!.isEmpty {
             self.tipControl.hidden = true
             self.containerView.hidden = true
             self.currencyLabel.hidden = false
@@ -127,7 +136,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             }, completion: { finished in
                 self.showDetails = false
             })
-        } else if !showDetails {
+        } else if !showDetails && !billField.text!.isEmpty {
             self.currencyLabel.hidden = true
             UIView.animateWithDuration(0.4, animations: {
                 self.currencyLabel.frame = CGRectOffset(self.currencyLabel.frame, 0, -100)

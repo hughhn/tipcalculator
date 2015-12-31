@@ -21,6 +21,7 @@ struct AppKeys {
     static let tipIndexKey = "tipIndexKey"
     static let lastTipDateKey = "lastTipDateKey"
     static let lastBillAmountKey = "lastBillAmountKey"
+    static let showDetailsKey = "showDetailsKey"
 }
 
 
