@@ -12,6 +12,7 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var tipControl: UISegmentedControl!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

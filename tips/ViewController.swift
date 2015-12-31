@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var containerView: UIView!
     
     var formatter = NSNumberFormatter()
     var timer: NSTimer!
@@ -82,6 +83,8 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onEditingChanged(sender: AnyObject?) {
+        updateViews()
+        
         let tipPercentage = AppConfig.tipPercentages[tipControl.selectedSegmentIndex]
         let billAmount = NSString(string: billField.text!).doubleValue
         let tip = billAmount * tipPercentage
@@ -91,6 +94,14 @@ class ViewController: UIViewController {
         totalLabel.text = formatter.stringFromNumber(total)
         
         animateTotal()
+    }
+    
+    func updateViews() {
+        if billField.text!.isEmpty {
+            containerView.hidden = true
+        } else {
+            containerView.hidden = false
+        }
     }
     
     func animateTotal() {
@@ -120,7 +131,7 @@ class ViewController: UIViewController {
         
         UIView.transitionWithView(totalLabel, duration: 1, options: .TransitionCrossDissolve, animations: { self.totalLabel.textColor = UIColor.redColor() }, completion: { finished in
             // completion
-            self.totalLabel.textColor = UIColor.blackColor()
+            self.totalLabel.textColor = UIColor.whiteColor()
         })
     }
     
