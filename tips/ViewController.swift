@@ -56,17 +56,13 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     func initBillAmount() {
+        showDetails = true
+        billField.text = ""
         tipLabel.text = formatter.stringFromNumber(0.0)
         totalLabel.text = formatter.stringFromNumber(0.0)
+        onEditingChanged(nil)
         
         let defaults = NSUserDefaults.standardUserDefaults()
-        let lastShowDetails = defaults.objectForKey(AppKeys.showDetailsKey)
-        if (defaults.objectForKey(AppKeys.showDetailsKey) != nil) {
-            showDetails = lastShowDetails as! Bool
-        } else {
-            showDetails = true
-        }
-        
         let lastTipDate = defaults.objectForKey(AppKeys.lastTipDateKey)
         let lastBillAmount = defaults.objectForKey(AppKeys.lastBillAmountKey)
         
@@ -84,7 +80,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(NSDate(), forKey: AppKeys.lastTipDateKey)
         defaults.setObject(billField.text, forKey: AppKeys.lastBillAmountKey)
-        defaults.setObject(showDetails, forKey: AppKeys.showDetailsKey)
         defaults.synchronize()
     }
     
@@ -123,6 +118,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     func updateViews() {
         if showDetails && billField.text!.isEmpty {
+            self.showDetails = false
             self.tipControl.hidden = true
             self.containerView.hidden = true
             self.currencyLabel.hidden = false
@@ -130,15 +126,15 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 self.currencyLabel.frame = CGRectOffset(self.currencyLabel.frame, 0, 100)
                 self.billField.frame = CGRectOffset(self.billField.frame, 0, 100)
             }, completion: { finished in
-                self.showDetails = false
+                
             })
         } else if !showDetails && !billField.text!.isEmpty {
+            self.showDetails = true
             self.currencyLabel.hidden = true
             UIView.animateWithDuration(0.4, animations: {
                 self.currencyLabel.frame = CGRectOffset(self.currencyLabel.frame, 0, -100)
                 self.billField.frame = CGRectOffset(self.billField.frame, 0, -100)
             }, completion: { finished in
-                self.showDetails = true
                 self.tipControl.hidden = false
                 self.containerView.hidden = false
             })
