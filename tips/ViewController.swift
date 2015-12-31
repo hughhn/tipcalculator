@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var currencyLabel: UILabel!
+    @IBOutlet weak var splitButton: UIButton!
     
     var formatter = NSNumberFormatter()
     var timer: NSTimer!
@@ -28,6 +29,10 @@ class ViewController: UIViewController {
         formatter.numberStyle = .CurrencyStyle
         formatter.locale = NSLocale.currentLocale()
         currencyLabel.text = formatter.currencySymbol
+        
+        splitButton.layer.cornerRadius = 4;
+        splitButton.layer.borderWidth = 1;
+        splitButton.layer.borderColor = UIColor.whiteColor().CGColor
         
         NSNotificationCenter
             .defaultCenter()
@@ -143,7 +148,7 @@ class ViewController: UIViewController {
     func timedAnimation() {
         let shakeAnim = CABasicAnimation(keyPath: "position")
         shakeAnim.duration = 0.07
-        shakeAnim.repeatCount = 4
+        shakeAnim.repeatCount = 6
         shakeAnim.autoreverses = true
         shakeAnim.fromValue = NSValue(CGPoint: CGPointMake(totalLabel.center.x - 10, totalLabel.center.y))
         shakeAnim.toValue = NSValue(CGPoint: CGPointMake(totalLabel.center.x + 10, totalLabel.center.y))
@@ -159,5 +164,9 @@ class ViewController: UIViewController {
         view.endEditing(true)
     }
 
+    @IBAction func onSplitClicked(sender: AnyObject) {
+        view.endEditing(true)
+    }
+    
 }
 

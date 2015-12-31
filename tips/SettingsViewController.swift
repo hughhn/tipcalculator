@@ -11,12 +11,16 @@ import UIKit
 class SettingsViewController: UIViewController {
     
     @IBOutlet weak var tipControl: UISegmentedControl!
-    
+    @IBOutlet weak var saveButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        saveButton.layer.cornerRadius = 4;
+        saveButton.layer.borderWidth = 1;
+        saveButton.layer.borderColor = UIColor.blueColor().CGColor
+        
         let defaults = NSUserDefaults.standardUserDefaults()
         let defaultTipIndex = defaults.integerForKey(AppKeys.tipIndexKey)
         tipControl.selectedSegmentIndex = defaultTipIndex

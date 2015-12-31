@@ -31,8 +31,19 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OeF-Tl-nlV">
+                                        <rect key="frame" x="26" y="52" width="123" height="48"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Split">
+                                            <color key="titleColor" red="0.98339182415616" green="1" blue="0.98650876262678355" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onSplitClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="V7w-5A-YsR"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.13621794871794868" green="0.13621794871794868" blue="0.13621794871794868" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.58729698243224571" green="0.76961579150213466" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="j5R-P8-xg9">
                                 <rect key="frame" x="26" y="180" width="274" height="29"/>
@@ -80,6 +91,7 @@
                         <outlet property="billField" destination="9PX-QM-rfp" id="2ez-ks-PR2"/>
                         <outlet property="containerView" destination="nWw-hX-rfo" id="O3m-M6-3Xj"/>
                         <outlet property="currencyLabel" destination="owh-k6-EaU" id="Bcd-tC-qd0"/>
+                        <outlet property="splitButton" destination="OeF-Tl-nlV" id="jqf-bA-obU"/>
                         <outlet property="tipControl" destination="j5R-P8-xg9" id="Pwe-wh-8Qw"/>
                         <outlet property="tipLabel" destination="Dd1-gY-DjH" id="kq8-Jp-mGZ"/>
                         <outlet property="totalLabel" destination="ne6-fi-RIk" id="SLe-s3-bKA"/>
@@ -122,8 +134,9 @@
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ojW-hL-LS9">
-                                <rect key="frame" x="20" y="198" width="46" height="30"/>
+                                <rect key="frame" x="20" y="189" width="66" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="onSave:" destination="Ulb-dP-aGm" eventType="touchUpInside" id="Ky2-Qa-djz"/>
@@ -133,6 +146,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="saveButton" destination="ojW-hL-LS9" id="lQn-ik-wNZ"/>
                         <outlet property="tipControl" destination="Ys7-Rh-SAg" id="DvG-EH-06N"/>
                     </connections>
                 </viewController>
