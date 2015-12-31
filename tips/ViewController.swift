@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     
     var formatter = NSNumberFormatter()
     var timer: NSTimer!
+    var showDetails = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +47,7 @@ class ViewController: UIViewController {
         let lastBillAmount = defaults.objectForKey(AppKeys.lastBillAmountKey)
         
         // try to restore the last bill amount if its < 10 mins ago
-        if (lastTipDate != nil && lastBillAmount != nil) {
+        if lastTipDate != nil && lastBillAmount != nil {
             let elapsedTime = Int(NSDate().timeIntervalSinceDate(lastTipDate as! NSDate))
             if (elapsedTime < AppConfig.maxCacheTime) {
                 billField.text = lastBillAmount as? String
@@ -98,14 +99,20 @@ class ViewController: UIViewController {
     
     func updateViews() {
         if billField.text!.isEmpty {
+            showDetails = false
+            tipControl.hidden = true
             containerView.hidden = true
-        } else {
+            billField.frame = CGRectOffset( billField.frame, 0, 100 );
+        } else if !showDetails {
+            showDetails = true
+            tipControl.hidden = false
             containerView.hidden = false
+            billField.frame = CGRectOffset( billField.frame, 0, -100 );
         }
     }
     
     func animateTotal() {
-        if (billField.text?.isEmpty == false) {
+        if billField.text?.isEmpty == false {
             if (timer != nil) {
                 timer.invalidate()
                 timer = nil
