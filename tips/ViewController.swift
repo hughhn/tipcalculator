@@ -61,10 +61,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         let defaults = NSUserDefaults.standardUserDefaults()
         let lastShowDetails = defaults.objectForKey(AppKeys.showDetailsKey)
-        if (lastShowDetails != nil) {
+        if (defaults.objectForKey(AppKeys.showDetailsKey) != nil) {
             showDetails = lastShowDetails as! Bool
-            print("restore showDetails")
-            print(showDetails)
+        } else {
+            showDetails = true
         }
         
         let lastTipDate = defaults.objectForKey(AppKeys.lastTipDateKey)
@@ -77,10 +77,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 billField.text = lastBillAmount as? String
             }
         }
-        
-        // Reset cache
-        defaults.setObject(nil, forKey: AppKeys.lastTipDateKey)
-        defaults.setObject(nil, forKey: AppKeys.lastBillAmountKey)
     }
     
     dynamic func onAppEnterBackground(notification: NSNotification){
