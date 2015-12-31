@@ -39,9 +39,13 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         formatter.locale = NSLocale.currentLocale()
         currencyLabel.text = formatter.currencySymbol
         
+        billField.textColor = UIColor.grayColor()
+        totalLabel.textColor = UIColor.redColor()
+        
         splitButton.layer.cornerRadius = 4;
         splitButton.layer.borderWidth = 1;
         splitButton.layer.borderColor = UIColor.whiteColor().CGColor
+//        splitTotalLabel.textColor = UIColor(red: CGFloat(40/255.0), green: CGFloat(240/255.0), blue: CGFloat(40/255.0), alpha: CGFloat(1.0))
         splitTotalLabel.textColor = UIColor.greenColor()
         
         NSNotificationCenter
@@ -92,7 +96,17 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         tipControl.selectedSegmentIndex = defaultTipIndex
         onEditingChanged(nil)
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+        let window = UIApplication.sharedApplication().keyWindow
+        let overlay = UIView(frame: UIScreen.mainScreen().bounds)
+//        overlay.backgroundColor = UIColor(red: CGFloat(38/255.0), green: CGFloat(114/255.0), blue: CGFloat(38/255.0), alpha: CGFloat(1.0))
+        overlay.backgroundColor = UIColor.greenColor()
+        overlay.alpha = 0.1
+        overlay.userInteractionEnabled = false
+        window?.addSubview(overlay)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -166,9 +180,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         shakeAnim.toValue = NSValue(CGPoint: CGPointMake(totalLabel.center.x + 10, totalLabel.center.y))
         totalLabel.layer.addAnimation(shakeAnim, forKey: "position")
         
-        UIView.transitionWithView(totalLabel, duration: 1, options: .TransitionCrossDissolve, animations: { self.totalLabel.textColor = UIColor.redColor() }, completion: { finished in
+        UIView.transitionWithView(totalLabel, duration: 1, options: .TransitionCrossDissolve, animations: { self.totalLabel.textColor = UIColor.whiteColor() }, completion: { finished in
             // completion
-            self.totalLabel.textColor = UIColor.whiteColor()
+            self.totalLabel.textColor = UIColor.redColor()
         })
     }
     
