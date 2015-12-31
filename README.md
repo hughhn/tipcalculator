@@ -2,7 +2,7 @@
 
 This is a Tip Calculator application for iOS submitted as the [pre-assignment](https://gist.github.com/timothy1ee/7747214) requirement for CodePath.
 
-Time spent: [~8]
+Time spent: [~15]
 
 Completed:
 
@@ -12,5 +12,6 @@ Completed:
 * [X] Optional: Remembering the bill amount across app restarts (if <10mins)
 * [X] Optional: Using locale-specific currency and currency thousands separators.
 * [X] Optional: Making sure the keyboard is always visible and the bill amount is always the first responder. This way the user doesn't have to tap anywhere to use this app. Just launch the app and start typing.
+* [X] Additional: various UI customizations and animations. Use a UIPickerView to split the money.
 
 ![Video Walkthrough](tipcalculator.gif)
